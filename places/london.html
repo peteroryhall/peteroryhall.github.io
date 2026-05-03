@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>London · Places · Peter Rory Hall</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="index.html" class="active">Places</a>
+</nav>
+
+<a class="back" href="index.html">← All places</a>
+
+<h1>London</h1>
+<p class="subtitle">England, UK</p>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filter('all')">All</button>
+  <button class="filter-btn" onclick="filter('restaurant')">Restaurants</button>
+  <button class="filter-btn" onclick="filter('brunch')">Brunch</button>
+  <button class="filter-btn" onclick="filter('bar')">Bars</button>
+  <button class="filter-btn" onclick="filter('activity')">Art &amp; Culture</button>
+</div>
+
+<h2>Bars &amp; Drinks</h2>
+<div class="category" data-type="bar">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Gordon's Wine Bar <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta">Charing Cross</div>
+    <div class="venue-notes">London's oldest wine bar — really cute place.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Dean Street Soho House <span class="price">££</span></div>
+    </div>
+    <div class="venue-notes">Always a good Negroni — sit at the back towards the bar.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Greek Street Soho House <span class="price">££</span></div>
+    </div>
+    <div class="venue-notes">Nice open rooftop bar.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">180 House Soho House <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta">Strand</div>
+    <div class="venue-notes">Larger than the others but many levels so nice vibes.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Caia <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta">Notting Hill</div>
+    <div class="venue-notes">Good cocktails and vinyl music downstairs.</div>
+  </div>
+
+</div>
+
+<h2>Brunch</h2>
+<div class="category" data-type="brunch">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Daylesford <span class="price">£££</span></div>
+    </div>
+    <div class="venue-meta">Pimlico</div>
+    <div class="venue-notes">Had a roast dinner — hearty food, like the blue egg.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Soho House Greek Street <span class="price">£££</span></div>
+    </div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Number 31 <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta">Marylebone</div>
+    <div class="venue-notes">Easy and simple but nothing special.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Boxcar</div>
+    </div>
+  </div>
+
+</div>
+
+<h2>Restaurants</h2>
+<div class="category" data-type="restaurant">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Elliots <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta"><span class="tag">Modern European</span> Small plates</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Number 31 <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta">Marylebone</div>
+    <div class="venue-notes">Easy and simple. Had dinner — the butter and aubergine is great.</div>
+  </div>
+
+</div>
+
+<h2>Art &amp; Culture</h2>
+<div class="category" data-type="activity">
+
+  <div class="activity">
+    <div class="activity-header">
+      <div class="activity-name">Courtauld Gallery <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="activity-note">Great permanent collection.</div>
+  </div>
+
+</div>
+
+<script>
+function filter(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.category').forEach(cat => {
+    if (type === 'all' || cat.dataset.type === type) {
+      cat.style.display = '';
+      cat.previousElementSibling.style.display = '';
+    } else {
+      cat.style.display = 'none';
+      cat.previousElementSibling.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>

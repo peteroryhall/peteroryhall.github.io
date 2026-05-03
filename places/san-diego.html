@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Diego · Places · Peter Rory Hall</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="index.html" class="active">Places</a>
+</nav>
+
+<a class="back" href="index.html">← All places</a>
+
+<h1>San Diego</h1>
+<p class="subtitle">California, USA</p>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filter('all')">All</button>
+  <button class="filter-btn" onclick="filter('restaurant')">Restaurants</button>
+  <button class="filter-btn" onclick="filter('brunch')">Brunch</button>
+  <button class="filter-btn" onclick="filter('bar')">Bars</button>
+  <button class="filter-btn" onclick="filter('gelato')">Gelato</button>
+</div>
+
+<h2>Restaurants</h2>
+<div class="category" data-type="restaurant">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Origen <span class="price">£££</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary Mexican</span></div>
+    <div class="venue-notes">Good ambience, good food, attractive servers and nice vibes.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Tacos El Gordo <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span> Chula Vista</div>
+    <div class="venue-notes">Chaotic, overwhelming in all the right ways.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Charminar Indian Restaurant <span class="price">££</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Indian</span></div>
+    <div class="venue-notes">A solid curry.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Shakespeare <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">English</span> <span class="tag">Bar</span></div>
+    <div class="venue-notes">Family favourite, random location. Go England and $10 fish and chips on a Friday — don't expect deluxe.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Marisi <span class="price">£££</span></div>
+      <div class="score high">7.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Great food, simple, ambience is great.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Underbelly <span class="price">££</span></div>
+      <div class="score high">7.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Japanese</span></div>
+    <div class="venue-notes">I actually really like the vibe of this place.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">DZ Akin's <span class="price">££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Jewish Deli</span></div>
+    <div class="venue-notes">Sandwiches, deli, classic American.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Hennersays <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Irish</span></div>
+    <div class="venue-notes">Good standard Irish.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Le Coq <span class="price">£££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">French</span></div>
+    <div class="venue-notes">Great building, very loud.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">French Gourmet <span class="price">£££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">French</span></div>
+    <div class="venue-notes">Classic French food and good wine, also does great coffee.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Woodworm <span class="price">£££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">Tasting menu, good food, atmosphere nice — probably a bit expensive for what you get.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">La Valencia Hotel <span class="price">£££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">For a hotel restaurant, it's pretty good — live music and a good view. Sit outside.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Cove House <span class="price">££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">Smelly but good sunset.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">pho duyen mai <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Vietnamese</span></div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Blue Ocean <span class="price">££</span></div>
+      <div class="score mid">6.8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Japanese</span></div>
+    <div class="venue-notes">You can indeed see the blue ocean; good food, a bit stale.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">La Dolce Vita Ristorante <span class="price">££</span></div>
+      <div class="score mid">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Great evening restaurant in a nice alleyway, good food.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Robataya Oton <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Japanese</span></div>
+    <div class="venue-notes">Proper Japanese food, maybe a bit too much for me.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Jomaru Hot Pot <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Korean</span></div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Brockton Villa <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">Good location, good steak, standard upper-middle-budget American.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Burger Lounge <span class="price">£</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">Something about this place; I like the vibes and the atmosphere.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Pastiamo <span class="price">£</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Fresh pasta, reasonably priced.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">The Taco Stand <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span></div>
+    <div class="venue-notes">Pretty busy, often a long queue at peak times, good food, quite filling.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Rosemary and Thyme <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span></div>
+    <div class="venue-notes">Good brunch.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Bhojan Griha <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Indian</span></div>
+    <div class="venue-notes">Pretty standard Indian with some fusion influences — be careful what you order.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Madison <span class="price">££</span></div>
+      <div class="score mid">6.6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Contemporary American</span></div>
+    <div class="venue-notes">Nice atmosphere, mid food.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Bencotto <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Good Italian food and people watching.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Ironsides <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">OK food if you like octopus; lobster cake was pretty nice, bread is brioche.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Dora <span class="price">££</span></div>
+      <div class="score mid">—</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Good food, location doesn't do it justice.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Solunto <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Good lighting for an Instagram picture, food is Americanized Italian.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Piatti <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Average American Italian, nice outdoor seating.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Sisters Pizza <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Light heavy American pizza.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Dough Muma <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Light heavy American pizza — like Sisters Pizza.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Cafe Sevilla <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Spanish</span></div>
+    <div class="venue-notes">Tapas were decent, live music was great — don't get the paella.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Clay Oven Indian <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Indian</span></div>
+    <div class="venue-notes">Nice, but not the most amazing Indian — order takeaway to get bigger portions.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Old Town Mexican Café <span class="price">££</span></div>
+      <div class="score mid">6.2/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span></div>
+    <div class="venue-notes">Semi-decent, loud and chaotic but enjoyable for a relaxed vibe.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">En Fuego Cantina &amp; Grill <span class="price">££</span></div>
+      <div class="score mid">6.2/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span></div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Pursto <span class="price">££</span></div>
+      <div class="score mid">6.1/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span></div>
+    <div class="venue-notes">Overpriced and low class.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Pomegranate <span class="price">££</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Georgian</span></div>
+    <div class="venue-notes">Unique, mid food.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Tacos El Gordo Gaslamp <span class="price">£</span></div>
+      <div class="score low">5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Mexican</span> Gaslamp</div>
+    <div class="venue-notes">Not nice — beef tasted like plastic. Go to the Chula Vista one instead.</div>
+  </div>
+
+</div>
+
+<h2>Brunch</h2>
+<div class="category" data-type="brunch">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Leilani's Cafe <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-notes">Spicy pork bagel is amazing.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Stratford Court Cafe <span class="price">££</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-notes">Pretty outside, good.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Drift Cafe</div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-notes">Egg sandwich actually smashed.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Seaside Surf Cafe <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-notes">I like the breakfast brioche.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Wayfarer Bread &amp; Pastry <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">French Gourmet <span class="price">£</span></div>
+      <div class="score high">7.5/10</div>
+    </div>
+    <div class="venue-notes">Good croissant.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Harry's Coffee Shop <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-notes">Simple, good.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Rosemary and Thyme <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-notes">Hidden away nicely, good service, no fancy coffee.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Honey Cafe &amp; Store <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-notes">Pretty mid.</div>
+  </div>
+
+</div>
+
+<h2>Bars</h2>
+<div class="category" data-type="bar">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Shakespeare <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-notes">Family favourite, random location. $10 fish and chips on a Friday.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Grass Skirts <span class="price">££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-notes">Make sure you go to the gin bar.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Part Time Lover <span class="price">££</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-notes">Hard to find a seat but nice atmosphere and cool record shop. Toilets are ugly.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Prohibition Lounge <span class="price">£</span></div>
+      <div class="score mid">—</div>
+    </div>
+    <div class="venue-notes">One of my preferred — too loud to speak but very much like a Pemican failed jazz player dream.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Lafayette <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-notes">Parking is hard, don't eat, atmosphere is nice.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Hennessy's La Jolla <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-notes">Nice, good live music.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">West End PB <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-notes">Easy place to be English and impress women.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">LOU LOUS <span class="price">££</span></div>
+      <div class="score low">5/10</div>
+    </div>
+    <div class="venue-notes">Feels a bit made of plastic, vibes just not the best. Not a fan of the Lafayette empire.</div>
+  </div>
+
+</div>
+
+<h2>Gelato &amp; Ice Cream</h2>
+<div class="category" data-type="gelato">
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Bobboi Natural Gelato <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta">La Jolla</div>
+    <div class="venue-notes">Good choc — watch the seagulls.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Salt and Straw <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta">Little Italy</div>
+    <div class="venue-notes">Fun to try all the flavours but overwhelming — just get choc.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">An's Hatmakers <span class="price">£</span></div>
+      <div class="score mid">—</div>
+    </div>
+    <div class="venue-meta">Del Mar</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Extraordinary Desserts <span class="price">££</span></div>
+      <div class="score low">4.5/10</div>
+    </div>
+    <div class="venue-notes">Stale, mid and overpriced.</div>
+  </div>
+
+</div>
+
+<script>
+function filter(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.category').forEach(cat => {
+    if (type === 'all' || cat.dataset.type === type) {
+      cat.style.display = '';
+      cat.previousElementSibling.style.display = '';
+    } else {
+      cat.style.display = 'none';
+      cat.previousElementSibling.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
