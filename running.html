@@ -5,6 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Running · Peter Rory Hall</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .chart-wrap {
+      margin: 1.5rem 0 2.5rem;
+      position: relative;
+      height: 280px;
+    }
+    .race-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Helvetica Neue", sans-serif;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .race-table th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      padding: 0.4rem 0.6rem 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .race-table td {
+      padding: 0.55rem 0.6rem 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .race-table tr:last-child td { border-bottom: none; }
+    .race-time { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .race-pb {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: var(--good);
+      color: #fff;
+      border-radius: 3px;
+      padding: 0.05rem 0.4rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .club-section { margin-bottom: 1.5rem; }
+    .club-name { font-weight: 600; font-size: 0.95rem; }
+    .club-meta {
+      font-family: "Helvetica Neue", sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .club-meta a { color: var(--muted); }
+    .club-meta a:hover { color: var(--accent); }
+  </style>
 </head>
 <body>
 
@@ -16,57 +68,151 @@
 </nav>
 
 <h1>Running</h1>
-<p class="subtitle">Marathons, training, and the occasional bad idea.</p>
+<p class="subtitle">Marathon times and running clubs.</p>
 
-<h2>Personal Bests</h2>
+<h2>Marathon Progression</h2>
 
-<div class="venue">
-  <div class="venue-header">
-    <div class="venue-name">Marathon (26.2 mi)</div>
-    <div class="score high">—</div>
+<div class="chart-wrap">
+  <canvas id="marathonChart"></canvas>
+</div>
+
+<table class="race-table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Race</th>
+      <th>Time</th>
+      <th>Overall</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apr 2026</td>
+      <td>TCS London Marathon</td>
+      <td><span class="race-time">2:42:50</span><span class="race-pb">PB</span></td>
+      <td>848th</td>
+      <td>633rd M</td>
+    </tr>
+    <tr>
+      <td>May 2025</td>
+      <td>Rock 'n' Roll San Diego</td>
+      <td><span class="race-time">2:49:41</span></td>
+      <td>22nd</td>
+      <td>7th M (18-24)</td>
+    </tr>
+    <tr>
+      <td>Apr 2025</td>
+      <td>Zurich Rock 'n' Roll</td>
+      <td><span class="race-time">2:48:49</span></td>
+      <td>91st</td>
+      <td>22nd M</td>
+    </tr>
+    <tr>
+      <td>Oct 2024</td>
+      <td>SPAR Budapest Marathon</td>
+      <td><span class="race-time">2:54:01</span></td>
+      <td>58th</td>
+      <td>6th M (M20)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Running Clubs</h2>
+
+<div class="club-section">
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Scripps Research Run Club</div>
+    </div>
+    <div class="venue-meta">Founder &amp; President · 2025&ndash;2026 &middot; <a href="https://www.instagram.com/scrippsrunclub/" target="_blank">@scrippsrunclub</a></div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
+      <div class="venue-name">Lincoln Running Club</div>
+    </div>
+    <div class="venue-meta">Founder &amp; President · 2024&ndash;2025 &middot; <a href="https://www.instagram.com/lincolnrunningclub/" target="_blank">@lincolnrunningclub</a></div>
   </div>
 </div>
 
-<div class="venue">
-  <div class="venue-header">
-    <div class="venue-name">Half Marathon (13.1 mi)</div>
-    <div class="score high">—</div>
-  </div>
-</div>
+<script>
+  // Times in seconds (chronological order)
+  const races = [
+    { label: 'Budapest\nOct 2024',  seconds: 2*3600 + 54*60 + 1  },
+    { label: 'Zurich\nApr 2025',   seconds: 2*3600 + 48*60 + 49 },
+    { label: 'San Diego\nMay 2025', seconds: 2*3600 + 49*60 + 41 },
+    { label: 'London\nApr 2026',   seconds: 2*3600 + 42*60 + 50 },
+  ];
 
-<div class="venue">
-  <div class="venue-header">
-    <div class="venue-name">10K</div>
-    <div class="score high">—</div>
-  </div>
-</div>
+  function fmtTime(s) {
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  }
 
-<div class="venue">
-  <div class="venue-header">
-    <div class="venue-name">5K</div>
-    <div class="score high">—</div>
-  </div>
-</div>
+  const minS = Math.min(...races.map(r => r.seconds)) - 300;
+  const maxS = Math.max(...races.map(r => r.seconds)) + 300;
 
-<h2>Races</h2>
+  // y-axis ticks every 2 minutes
+  const tickStep = 120;
+  const minTick = Math.floor(minS / tickStep) * tickStep;
+  const maxTick = Math.ceil(maxS / tickStep) * tickStep;
 
-<div class="venue">
-  <div class="venue-header">
-    <div class="venue-name">Add your races here</div>
-    <div class="score mid">—</div>
-  </div>
-  <div class="venue-meta">Location · Year</div>
-  <div class="venue-notes">Notes on the race, conditions, how it went.</div>
-</div>
-
-<h2>Favourite Routes</h2>
-
-<div class="activity">
-  <div class="activity-header">
-    <div class="activity-name">Add your favourite routes here</div>
-  </div>
-  <div class="activity-note">Distance, terrain, what makes it good.</div>
-</div>
+  new Chart(document.getElementById('marathonChart'), {
+    type: 'line',
+    data: {
+      labels: races.map(r => r.label),
+      datasets: [{
+        data: races.map(r => r.seconds),
+        borderColor: '#2a6496',
+        backgroundColor: 'rgba(42,100,150,0.08)',
+        pointBackgroundColor: races.map((r, i) => i === races.length - 1 ? '#3a7d44' : '#2a6496'),
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ' ' + fmtTime(ctx.parsed.y),
+          }
+        }
+      },
+      scales: {
+        y: {
+          reverse: true,
+          min: minTick,
+          max: maxTick,
+          ticks: {
+            stepSize: tickStep,
+            callback: v => fmtTime(v),
+            font: { family: 'Helvetica Neue', size: 11 },
+            color: '#666',
+          },
+          grid: { color: '#e0e0dc' },
+          border: { display: false },
+        },
+        x: {
+          ticks: {
+            font: { family: 'Helvetica Neue', size: 11 },
+            color: '#666',
+          },
+          grid: { display: false },
+          border: { display: false },
+        }
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
