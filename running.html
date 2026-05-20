@@ -132,8 +132,7 @@
 </div>
 
 <script>
-  // Times in seconds (chronological order)
-  const races = [
+  const raceTimes = [
     { label: 'Budapest\nOct 2024',  seconds: 2*3600 + 54*60 + 1  },
     { label: 'Zurich\nApr 2025',   seconds: 2*3600 + 48*60 + 49 },
     { label: 'San Diego\nMay 2025', seconds: 2*3600 + 49*60 + 41 },
@@ -147,23 +146,23 @@
     return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
   }
 
-  const minS = Math.min(...races.map(r => r.seconds)) - 300;
-  const maxS = Math.max(...races.map(r => r.seconds)) + 300;
+  // Plot time saved vs 3:00:00 so faster = higher on chart
+  const baseline = 3 * 3600;
+  const plotData = raceTimes.map(r => baseline - r.seconds);
 
-  // y-axis ticks every 2 minutes
   const tickStep = 120;
-  const minTick = Math.floor(minS / tickStep) * tickStep;
-  const maxTick = Math.ceil(maxS / tickStep) * tickStep;
+  const minPlot = Math.floor((Math.min(...plotData) - 300) / tickStep) * tickStep;
+  const maxPlot = Math.ceil((Math.max(...plotData) + 300) / tickStep) * tickStep;
 
   new Chart(document.getElementById('marathonChart'), {
     type: 'line',
     data: {
-      labels: races.map(r => r.label),
+      labels: raceTimes.map(r => r.label),
       datasets: [{
-        data: races.map(r => r.seconds),
+        data: plotData,
         borderColor: '#2a6496',
         backgroundColor: 'rgba(42,100,150,0.08)',
-        pointBackgroundColor: races.map((r, i) => i === races.length - 1 ? '#3a7d44' : '#2a6496'),
+        pointBackgroundColor: raceTimes.map((r, i) => i === raceTimes.length - 1 ? '#3a7d44' : '#2a6496'),
         pointRadius: 6,
         pointHoverRadius: 8,
         borderWidth: 2,
@@ -178,18 +177,17 @@
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: ctx => ' ' + fmtTime(ctx.parsed.y),
+            label: ctx => ' ' + fmtTime(baseline - ctx.parsed.y),
           }
         }
       },
       scales: {
         y: {
-          reverse: true,
-          min: minTick,
-          max: maxTick,
+          min: minPlot,
+          max: maxPlot,
           ticks: {
             stepSize: tickStep,
-            callback: v => fmtTime(v),
+            callback: v => fmtTime(baseline - v),
             font: { family: 'Helvetica Neue', size: 11 },
             color: '#666',
           },
