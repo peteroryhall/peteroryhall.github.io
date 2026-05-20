@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://peteroryhall.github.io/</loc><priority>1.0</priority></url>
+  <url><loc>https://peteroryhall.github.io/publications.html</loc><priority>0.9</priority></url>
+  <url><loc>https://peteroryhall.github.io/running.html</loc><priority>0.8</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/index.html</loc><priority>0.8</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/san-diego.html</loc><priority>0.7</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/oxford.html</loc><priority>0.7</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/london.html</loc><priority>0.7</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/rome.html</loc><priority>0.6</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/naples.html</loc><priority>0.6</priority></url>
+  <url><loc>https://peteroryhall.github.io/places/tj.html</loc><priority>0.6</priority></url>
+</urlset>
