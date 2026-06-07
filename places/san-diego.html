@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>San Diego · Restaurant Reviews · Peter Rory Hall</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    #map { height: 420px; border-radius: 8px; margin: 1rem 0 2rem; border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
 
@@ -20,6 +25,8 @@
 <h1>San Diego</h1>
 <p class="subtitle">California, USA</p>
 
+<div id="map"></div>
+
 <div class="filter-bar">
   <button class="filter-btn active" onclick="filter('all')">All</button>
   <button class="filter-btn" onclick="filter('restaurant')">Restaurants</button>
@@ -28,10 +35,10 @@
   <button class="filter-btn" onclick="filter('gelato')">Gelato</button>
 </div>
 
-<h2>Restaurants</h2>
+<h2>Restaurants &amp; Brunch</h2>
 <div class="category" data-type="restaurant">
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Origen <span class="price">£££</span></div>
       <div class="score high">8.4/10</div>
@@ -40,7 +47,7 @@
     <div class="venue-notes">Good ambience, good food, attractive servers and nice vibes.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">A.R. Valentien <span class="price">£££</span></div>
       <div class="score high">8.2/10</div>
@@ -49,7 +56,7 @@
     <div class="venue-notes">Traditional service, tasty food and a serene setting.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Paradisaea <span class="price">£££</span></div>
       <div class="score high">8.2/10</div>
@@ -58,7 +65,25 @@
     <div class="venue-notes">Tasting menu is excellent.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Leilani's Cafe <span class="price">£</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">Spicy pork bagel is amazing.</div>
+  </div>
+
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Stratford Court Cafe <span class="price">££</span></div>
+      <div class="score high">8/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">Pretty outside, good.</div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Tacos El Gordo <span class="price">£</span></div>
       <div class="score high">8/10</div>
@@ -67,7 +92,7 @@
     <div class="venue-notes">Chaotic, overwhelming in all the right ways.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Charminar Indian Restaurant <span class="price">££</span></div>
       <div class="score high">8/10</div>
@@ -76,25 +101,25 @@
     <div class="venue-notes">A solid curry.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Shakespeare's <span class="price">£</span></div>
       <div class="score high">8/10</div>
     </div>
-    <div class="venue-meta"><span class="tag">English</span> <span class="tag">Bar</span></div>
-    <div class="venue-notes">Family favourite, random location. Go England and $10 fish and chips on a Friday, don't expect deluxe.</div>
+    <div class="venue-meta"><span class="tag">English</span></div>
+    <div class="venue-notes">Family favourite, random location. $10 fish and chips on a Friday, don't expect deluxe.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">La Dolce Vita Ristorante <span class="price">££</span></div>
-      <div class="score mid">8/10</div>
+      <div class="score high">8/10</div>
     </div>
     <div class="venue-meta"><span class="tag">Italian</span></div>
     <div class="venue-notes">Great evening restaurant in a nice alleyway, good food.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">CTZN <span class="price">£££</span></div>
       <div class="score high">7.95/10</div>
@@ -103,7 +128,25 @@
     <div class="venue-notes">Super tasty food. Short rib paella was a good option. Service is a bit slow.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">French Gourmet <span class="price">£</span></div>
+      <div class="score high">7.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">French</span> <span class="tag">Brunch</span></div>
+    <div class="venue-notes">Good croissant. Also does classic French food and good wine for dinner.</div>
+  </div>
+
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Atelier Manna <span class="price">££</span></div>
+      <div class="score high">7.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">Nice vibes, get the Turkish eggs, nice crockery.</div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Azuki <span class="price">£££</span></div>
       <div class="score high">7.5/10</div>
@@ -112,7 +155,7 @@
     <div class="venue-notes">Good vibes, good sushi. Make a reservation in the back.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Marisi <span class="price">£££</span></div>
       <div class="score high">7.5/10</div>
@@ -121,7 +164,7 @@
     <div class="venue-notes">Great food, simple, ambience is great.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Underbelly <span class="price">££</span></div>
       <div class="score high">7.5/10</div>
@@ -130,7 +173,7 @@
     <div class="venue-notes">I actually really like the vibe of this place.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">DZ Akin's <span class="price">££</span></div>
       <div class="score high">7/10</div>
@@ -139,7 +182,7 @@
     <div class="venue-notes">Sandwiches, deli, classic American.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Hennersays Tavern <span class="price">£</span></div>
       <div class="score high">7/10</div>
@@ -148,7 +191,7 @@
     <div class="venue-notes">Good standard Irish.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Le Coq <span class="price">£££</span></div>
       <div class="score high">7/10</div>
@@ -157,16 +200,7 @@
     <div class="venue-notes">Great building, very loud.</div>
   </div>
 
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">French Gourmet <span class="price">£££</span></div>
-      <div class="score high">7/10</div>
-    </div>
-    <div class="venue-meta"><span class="tag">French</span></div>
-    <div class="venue-notes">Classic French food and good wine, also does great coffee.</div>
-  </div>
-
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Woodworm <span class="price">£££</span></div>
       <div class="score high">7/10</div>
@@ -175,7 +209,7 @@
     <div class="venue-notes">Tasting menu, good food, atmosphere nice, probably a bit expensive for what you get.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">La Valencia Hotel <span class="price">£££</span></div>
       <div class="score high">7/10</div>
@@ -184,7 +218,7 @@
     <div class="venue-notes">For a hotel restaurant, it's pretty good, live music and a good view. Sit outside.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Cove House <span class="price">££</span></div>
       <div class="score high">7/10</div>
@@ -193,7 +227,7 @@
     <div class="venue-notes">Smelly but good sunset.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">pho duyen mai <span class="price">£</span></div>
       <div class="score high">7/10</div>
@@ -201,7 +235,33 @@
     <div class="venue-meta"><span class="tag">Vietnamese</span></div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Drift Cafe</div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">Egg sandwich actually smashed.</div>
+  </div>
+
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Seaside Surf Cafe <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">I like the breakfast brioche.</div>
+  </div>
+
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Wayfarer Bread &amp; Pastry <span class="price">£</span></div>
+      <div class="score high">7/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Blue Ocean <span class="price">££</span></div>
       <div class="score mid">6.8/10</div>
@@ -210,7 +270,7 @@
     <div class="venue-notes">You can indeed see the blue ocean; good food, a bit stale.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Madison <span class="price">££</span></div>
       <div class="score mid">6.6/10</div>
@@ -219,7 +279,7 @@
     <div class="venue-notes">Nice atmosphere, mid food.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Robataya Oton <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
@@ -228,7 +288,7 @@
     <div class="venue-notes">Proper Japanese food, maybe a bit too much for me.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Jomaru Hot Pot <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
@@ -236,7 +296,7 @@
     <div class="venue-meta"><span class="tag">Korean</span></div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Brockton Villa <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
@@ -245,7 +305,7 @@
     <div class="venue-notes">Good location, good steak, standard upper-middle-budget American.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Burger Lounge <span class="price">£</span></div>
       <div class="score mid">6.5/10</div>
@@ -254,7 +314,7 @@
     <div class="venue-notes">Something about this place; I like the vibes and the atmosphere.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Pastiamo <span class="price">£</span></div>
       <div class="score mid">6.5/10</div>
@@ -263,7 +323,7 @@
     <div class="venue-notes">Fresh pasta, reasonably priced.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">The Taco Stand <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
@@ -272,16 +332,16 @@
     <div class="venue-notes">Pretty busy, often a long queue at peak times, good food, quite filling.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Rosemary and Thyme <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
     </div>
     <div class="venue-meta"><span class="tag">Mexican</span></div>
-    <div class="venue-notes">Good brunch.</div>
+    <div class="venue-notes">Good brunch, hidden away nicely, good service.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Bhojan Griha <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
@@ -290,16 +350,25 @@
     <div class="venue-notes">Pretty standard Indian with some fusion influences, be careful what you order.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Harry's Coffee Shop <span class="price">££</span></div>
+      <div class="score mid">6.5/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span> La Jolla</div>
+    <div class="venue-notes">Simple, good.</div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Old Town Mexican Café <span class="price">££</span></div>
       <div class="score mid">6.2/10</div>
     </div>
-    <div class="venue-meta"><span class="tag">Mexican</span></div>
+    <div class="venue-meta"><span class="tag">Mexican</span> Old Town</div>
     <div class="venue-notes">Semi-decent, loud and chaotic but enjoyable for a relaxed vibe.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">En Fuego Cantina &amp; Grill <span class="price">££</span></div>
       <div class="score mid">6.2/10</div>
@@ -307,7 +376,7 @@
     <div class="venue-meta"><span class="tag">Mexican</span></div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Pursto <span class="price">££</span></div>
       <div class="score mid">6.1/10</div>
@@ -316,16 +385,7 @@
     <div class="venue-notes">Overpriced and low class.</div>
   </div>
 
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Bencotto <span class="price">££</span></div>
-      <div class="score mid">6/10</div>
-    </div>
-    <div class="venue-meta"><span class="tag">Italian</span></div>
-    <div class="venue-notes">Good Italian food and people watching.</div>
-  </div>
-
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Ironsides <span class="price">££</span></div>
       <div class="score mid">6/10</div>
@@ -334,16 +394,24 @@
     <div class="venue-notes">OK food if you like octopus; lobster cake was pretty nice, bread is brioche.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
+    <div class="venue-header">
+      <div class="venue-name">Dora <span class="price">££</span></div>
+    </div>
+    <div class="venue-meta"><span class="tag">Italian</span></div>
+    <div class="venue-notes">Good food, location doesn't do it justice.</div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Solunto <span class="price">££</span></div>
       <div class="score mid">6/10</div>
     </div>
     <div class="venue-meta"><span class="tag">Italian</span></div>
-    <div class="venue-notes">Good lighting for an Instagram picture, food is Americanized Italian.</div>
+    <div class="venue-notes">Good lighting for an Instagram picture, food is Americanised Italian.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Piatti <span class="price">££</span></div>
       <div class="score mid">6/10</div>
@@ -352,7 +420,7 @@
     <div class="venue-notes">Average American Italian, nice outdoor seating.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Sisters Pizza <span class="price">£</span></div>
       <div class="score mid">6/10</div>
@@ -361,7 +429,7 @@
     <div class="venue-notes">Light heavy American pizza.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Dough Muma <span class="price">£</span></div>
       <div class="score mid">6/10</div>
@@ -370,7 +438,7 @@
     <div class="venue-notes">Light heavy American pizza, like Sisters Pizza.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Cafe Sevilla <span class="price">££</span></div>
       <div class="score mid">6/10</div>
@@ -379,7 +447,7 @@
     <div class="venue-notes">Tapas were decent, live music was great, don't get the paella.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Clay Oven Indian <span class="price">££</span></div>
       <div class="score mid">6/10</div>
@@ -388,7 +456,7 @@
     <div class="venue-notes">Nice, but not the most amazing Indian, order takeaway to get bigger portions.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Pomegranate <span class="price">££</span></div>
       <div class="score mid">6/10</div>
@@ -397,97 +465,22 @@
     <div class="venue-notes">Unique, mid food.</div>
   </div>
 
-  <div class="venue">
+  <div class="venue" data-brunch="true">
+    <div class="venue-header">
+      <div class="venue-name">Honey Cafe &amp; Store <span class="price">£</span></div>
+      <div class="score mid">6/10</div>
+    </div>
+    <div class="venue-meta"><span class="tag">Brunch</span></div>
+    <div class="venue-notes">Pretty mid.</div>
+  </div>
+
+  <div class="venue" data-brunch="false">
     <div class="venue-header">
       <div class="venue-name">Tacos El Gordo Gaslamp <span class="price">£</span></div>
       <div class="score low">5/10</div>
     </div>
     <div class="venue-meta"><span class="tag">Mexican</span> Gaslamp</div>
     <div class="venue-notes">Not nice, beef tasted like plastic. Go to the Chula Vista one instead.</div>
-  </div>
-
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Dora <span class="price">££</span></div>
-          </div>
-    <div class="venue-meta"><span class="tag">Italian</span></div>
-    <div class="venue-notes">Good food, location doesn't do it justice.</div>
-  </div>
-</div>
-
-<h2>Brunch</h2>
-<div class="category" data-type="brunch">
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Leilani's Cafe <span class="price">£</span></div>
-      <div class="score high">8/10</div>
-    </div>
-    <div class="venue-notes">Spicy pork bagel is amazing.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Stratford Court Cafe <span class="price">££</span></div>
-      <div class="score high">8/10</div>
-    </div>
-    <div class="venue-notes">Pretty outside, good.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">French Gourmet <span class="price">£</span></div>
-      <div class="score high">7.5/10</div>
-    </div>
-    <div class="venue-notes">Good croissant.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Drift Cafe</div>
-      <div class="score high">7/10</div>
-    </div>
-    <div class="venue-notes">Egg sandwich actually smashed.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Seaside Surf Cafe <span class="price">£</span></div>
-      <div class="score high">7/10</div>
-    </div>
-    <div class="venue-notes">I like the breakfast brioche.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Wayfarer Bread &amp; Pastry <span class="price">£</span></div>
-      <div class="score high">7/10</div>
-    </div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Harry's Coffee Shop <span class="price">££</span></div>
-      <div class="score mid">6.5/10</div>
-    </div>
-    <div class="venue-notes">Simple, good.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Rosemary and Thyme <span class="price">££</span></div>
-      <div class="score mid">6.5/10</div>
-    </div>
-    <div class="venue-notes">Hidden away nicely, good service, no fancy coffee.</div>
-  </div>
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Honey Cafe &amp; Store <span class="price">£</span></div>
-      <div class="score mid">6/10</div>
-    </div>
-    <div class="venue-notes">Pretty mid.</div>
   </div>
 
 </div>
@@ -529,6 +522,13 @@
 
   <div class="venue">
     <div class="venue-header">
+      <div class="venue-name">Prohibition Lounge <span class="price">£</span></div>
+    </div>
+    <div class="venue-notes">One of my preferred, too loud to speak but very much like a Pemican failed jazz player dream.</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
       <div class="venue-name">Lafayette <span class="price">££</span></div>
       <div class="score mid">6.5/10</div>
     </div>
@@ -559,13 +559,6 @@
     <div class="venue-notes">Feels a bit made of plastic, vibes just not the best. Not a fan of the Lafayette empire.</div>
   </div>
 
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">Prohibition Lounge <span class="price">£</span></div>
-          </div>
-    <div class="venue-notes">One of my preferred, too loud to speak but very much like a Pemican failed jazz player dream.</div>
-  </div>
 </div>
 
 <h2>Gelato &amp; Ice Cream</h2>
@@ -591,35 +584,133 @@
 
   <div class="venue">
     <div class="venue-header">
+      <div class="venue-name">An's Hatmakers <span class="price">£</span></div>
+    </div>
+    <div class="venue-meta">Del Mar</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-header">
       <div class="venue-name">Extraordinary Desserts <span class="price">££</span></div>
       <div class="score low">4.5/10</div>
     </div>
     <div class="venue-notes">Stale, mid and overpriced.</div>
   </div>
 
-
-  <div class="venue">
-    <div class="venue-header">
-      <div class="venue-name">An's Hatmakers <span class="price">£</span></div>
-          </div>
-    <div class="venue-meta">Del Mar</div>
-  </div>
 </div>
 
 <script>
 function filter(type) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
+
   document.querySelectorAll('.category').forEach(cat => {
-    if (type === 'all' || cat.dataset.type === type) {
+    const catType = cat.dataset.type;
+    if (type === 'all') {
       cat.style.display = '';
       cat.previousElementSibling.style.display = '';
+      cat.querySelectorAll('.venue').forEach(v => v.style.display = '');
+    } else if (type === 'brunch') {
+      if (catType === 'restaurant') {
+        cat.style.display = '';
+        cat.previousElementSibling.style.display = '';
+        cat.querySelectorAll('.venue').forEach(v => {
+          v.style.display = v.dataset.brunch === 'true' ? '' : 'none';
+        });
+      } else {
+        cat.style.display = 'none';
+        cat.previousElementSibling.style.display = 'none';
+      }
+    } else if (type === 'restaurant') {
+      if (catType === 'restaurant') {
+        cat.style.display = '';
+        cat.previousElementSibling.style.display = '';
+        cat.querySelectorAll('.venue').forEach(v => v.style.display = '');
+      } else {
+        cat.style.display = 'none';
+        cat.previousElementSibling.style.display = 'none';
+      }
     } else {
-      cat.style.display = 'none';
-      cat.previousElementSibling.style.display = 'none';
+      if (catType === type) {
+        cat.style.display = '';
+        cat.previousElementSibling.style.display = '';
+      } else {
+        cat.style.display = 'none';
+        cat.previousElementSibling.style.display = 'none';
+      }
     }
   });
 }
+
+// Map
+const venues = [
+  { name: 'Origen', lat: 32.7290, lng: -117.1728, score: 8.4, type: 'restaurant', note: 'Contemporary Mexican' },
+  { name: 'A.R. Valentien', lat: 32.8975, lng: -117.2491, score: 8.2, type: 'restaurant', note: 'Contemporary American' },
+  { name: 'Paradisaea', lat: 32.8100, lng: -117.2580, score: 8.2, type: 'restaurant', note: 'Contemporary American' },
+  { name: 'Leilani\'s Cafe', lat: 32.7451, lng: -117.1641, score: 8.0, type: 'brunch', note: 'Brunch' },
+  { name: 'Stratford Court Cafe', lat: 32.8400, lng: -117.2700, score: 8.0, type: 'brunch', note: 'Brunch · La Jolla' },
+  { name: 'Tacos El Gordo', lat: 32.6416, lng: -117.0863, score: 8.0, type: 'restaurant', note: 'Mexican · Chula Vista' },
+  { name: 'Charminar Indian', lat: 32.7851, lng: -117.1641, score: 8.0, type: 'restaurant', note: 'Indian' },
+  { name: 'Shakespeare\'s', lat: 32.7490, lng: -117.1794, score: 8.0, type: 'restaurant', note: 'English · Mission Hills' },
+  { name: 'La Dolce Vita', lat: 32.8481, lng: -117.2762, score: 8.0, type: 'restaurant', note: 'Italian · La Jolla' },
+  { name: 'Kiku Room', lat: 32.7157, lng: -117.1611, score: 8.5, type: 'bar', note: 'Bar' },
+  { name: 'CTZN', lat: 32.9889, lng: -117.2716, score: 7.95, type: 'restaurant', note: 'Basque Tapas · Solana Beach' },
+  { name: 'French Gourmet', lat: 32.7976, lng: -117.2537, score: 7.5, type: 'restaurant', note: 'French · Pacific Beach' },
+  { name: 'Atelier Manna', lat: 32.7325, lng: -117.1451, score: 7.5, type: 'brunch', note: 'Brunch · North Park' },
+  { name: 'Azuki', lat: 32.7274, lng: -117.1698, score: 7.5, type: 'restaurant', note: 'Japanese · Little Italy' },
+  { name: 'Marisi', lat: 32.8400, lng: -117.2700, score: 7.5, type: 'restaurant', note: 'Italian · La Jolla' },
+  { name: 'Underbelly', lat: 32.7451, lng: -117.1300, score: 7.5, type: 'restaurant', note: 'Japanese · North Park' },
+  { name: 'DZ Akin\'s', lat: 32.7673, lng: -117.0236, score: 7.0, type: 'restaurant', note: 'Jewish Deli · La Mesa' },
+  { name: 'Hennersays Tavern', lat: 32.8579, lng: -117.2543, score: 7.0, type: 'restaurant', note: 'Irish · La Jolla' },
+  { name: 'Le Coq', lat: 32.7221, lng: -117.1611, score: 7.0, type: 'restaurant', note: 'French' },
+  { name: 'Woodworm', lat: 32.7200, lng: -117.1620, score: 7.0, type: 'restaurant', note: 'Contemporary American' },
+  { name: 'La Valencia Hotel', lat: 32.8476, lng: -117.2757, score: 7.0, type: 'restaurant', note: 'Contemporary American · La Jolla' },
+  { name: 'Cove House', lat: 32.8503, lng: -117.2720, score: 7.0, type: 'restaurant', note: 'Contemporary American · La Jolla Cove' },
+  { name: 'Grass Skirts', lat: 32.7983, lng: -117.2551, score: 7.0, type: 'bar', note: 'Bar · Pacific Beach' },
+  { name: 'Part Time Lover', lat: 32.7200, lng: -117.1611, score: 7.0, type: 'bar', note: 'Bar' },
+  { name: 'Drift Cafe', lat: 32.7983, lng: -117.2551, score: 7.0, type: 'brunch', note: 'Brunch · Pacific Beach' },
+  { name: 'Seaside Surf Cafe', lat: 32.7950, lng: -117.2530, score: 7.0, type: 'brunch', note: 'Brunch · Pacific Beach' },
+  { name: 'Wayfarer Bread', lat: 32.7274, lng: -117.1698, score: 7.0, type: 'brunch', note: 'Brunch · Little Italy' },
+  { name: 'Blue Ocean', lat: 32.7813, lng: -117.2517, score: 6.8, type: 'restaurant', note: 'Japanese · Mission Beach' },
+  { name: 'Madison', lat: 32.7200, lng: -117.1620, score: 6.6, type: 'restaurant', note: 'Contemporary American' },
+  { name: 'Brockton Villa', lat: 32.8503, lng: -117.2722, score: 6.5, type: 'restaurant', note: 'Contemporary American · La Jolla Cove' },
+  { name: 'Burger Lounge', lat: 32.8470, lng: -117.2756, score: 6.5, type: 'restaurant', note: 'Contemporary American · La Jolla' },
+  { name: 'The Taco Stand', lat: 32.8470, lng: -117.2700, score: 6.5, type: 'restaurant', note: 'Mexican · La Jolla' },
+  { name: 'Harry\'s Coffee Shop', lat: 32.8481, lng: -117.2762, score: 6.5, type: 'brunch', note: 'Brunch · La Jolla' },
+  { name: 'Old Town Mexican Café', lat: 32.7545, lng: -117.1963, score: 6.2, type: 'restaurant', note: 'Mexican · Old Town' },
+  { name: 'Cafe Sevilla', lat: 32.7127, lng: -117.1603, score: 6.0, type: 'restaurant', note: 'Spanish · Gaslamp' },
+  { name: 'Bobboi Gelato', lat: 32.8508, lng: -117.2699, score: 8.0, type: 'gelato', note: 'Gelato · La Jolla' },
+  { name: 'Salt and Straw', lat: 32.7274, lng: -117.1698, score: 6.0, type: 'gelato', note: 'Gelato · Little Italy' },
+  { name: 'Tacos El Gordo Gaslamp', lat: 32.7100, lng: -117.1590, score: 5.0, type: 'restaurant', note: 'Mexican · Gaslamp' },
+  { name: 'Extraordinary Desserts', lat: 32.7451, lng: -117.1641, score: 4.5, type: 'gelato', note: 'Desserts · Hillcrest' },
+];
+
+function scoreColour(score) {
+  if (!score) return '#999';
+  if (score >= 8) return '#3a7d44';
+  if (score >= 7) return '#2a6496';
+  if (score >= 6) return '#b07d2a';
+  return '#a33';
+}
+
+const map = L.map('map').setView([32.78, -117.22], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors',
+  maxZoom: 18,
+}).addTo(map);
+
+venues.forEach(v => {
+  const marker = L.circleMarker([v.lat, v.lng], {
+    radius: 7,
+    fillColor: scoreColour(v.score),
+    color: '#fff',
+    weight: 1.5,
+    opacity: 1,
+    fillOpacity: 0.9,
+  }).addTo(map);
+  const scoreStr = v.score ? `${v.score}/10` : '';
+  marker.bindPopup(`<strong>${v.name}</strong>${scoreStr ? ' &middot; ' + scoreStr : ''}<br><span style="color:#666;font-size:0.85em">${v.note}</span>`);
+});
 </script>
 
 </body>
