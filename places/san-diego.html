@@ -755,9 +755,9 @@ function scoreColour(score) {
 }
 
 const map = L.map('map').setView([32.78, -117.22], 11);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors',
-  maxZoom: 18,
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors © CARTO',
+  maxZoom: 19,
 }).addTo(map);
 
 venues.forEach(v => {
